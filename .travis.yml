@@ -1,0 +1,18 @@
+language: go
+sudo: false
+
+install:
+  - go get -u -d github.com/ipfs/go-ipfs
+  - cd $GOPATH/src/github.com/ipfs/go-ipfs
+  - make install
+
+jobs:
+  include:
+    - stage: deploy
+      script: cd $TRAVIS_BUILD_DIR && ./scripts/make_ipfs_hash.sh
+      deploy:
+        provider: releases
+        api_key: $GITHUB_OAUTH_TOKEN
+        file: ipfs_root
+        skip_cleanup: true
+        name: rolling
