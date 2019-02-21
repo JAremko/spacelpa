@@ -15,5 +15,5 @@ echo "IPFS daemon started."
 # Show what we're adding
 ipfs add --recursive --only-hash --progress=false ./packages
 
-# Generate parsable output
+# Get only "packages" folder hash
 ipfs add --recursive --only-hash --quieter ./packages > ipfs_root
